@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import Sidebar from "./components/Sidebar";
+import Dashboard from "./Dashboard";
+import DiabetesPredict from "./DiabetesPredict";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import DiabetesTrack from "./DiabetesTrack";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <BrowserRouter>
+
+    <div className="App w-full h-[100vh] flex flex-col lg:flex-row  ">
+    <div className="lg:w-[17%] ">
+    <Sidebar/>
     </div>
+   <div className="lg:w-[80%]">
+        <Routes>
+          <Route exact path="/" element={< Dashboard />} />
+          <Route exact path="/diabetes-track" element={< DiabetesTrack />} />
+          <Route exact path="/diabetes-predict" element={< DiabetesPredict />} />
+          <Route exact path="/diabetes-info" element={< Dashboard />} />
+
+        </Routes>
+      </div>
+    </div>
+    </BrowserRouter>
+
   );
 }
 
