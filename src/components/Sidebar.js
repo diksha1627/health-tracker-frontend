@@ -1,5 +1,6 @@
+/* eslint-disable no-empty-pattern */
 import React, { useState } from 'react';
-import { ListPlus  , Coins , SignOut , PuzzlePiece , BookOpen ,Gauge }  from "@phosphor-icons/react";
+import { ListPlus  , SignOut , PuzzlePiece , BookOpen ,Gauge }  from "@phosphor-icons/react";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -16,7 +17,7 @@ const Sidebar = ({
 
 
     return (
-        <div className="bg-gradient-to-r from-rose-300 to-rose-200  mt-3 rounded-md  ">
+        <div className="bg-gradient-to-r from-blue-700 to-blue-300  ">
             <div className={`container mx-auto flex  ${isMenuOpen ? 'flex-col' : 'flex-col'} items-center justify-between`}>
                 {/* Display user name */}
                 <div className="text-white text-[20px] font-600 mt-5 w-[10rem]">Hi, </div>
@@ -29,7 +30,7 @@ const Sidebar = ({
                     ☰
                 </div>
 
-                <div className=" flex-col lg:h-[90vh] ">
+                <div className=" flex-col lg:h-[87vh] overflow-hidden ">
                     {/* buttons (desktop view) */}
                     <div className="hidden md:flex gap-3 flex-col items-between justify-between ">
                     <button onClick={()=>{navigate('/');}} className="bg-[#F5F5F5] rounded-xl pl-2 pr-2 hover:bg-[#333333] border hover:text-white text-black w-[10.5rem] mt-10 flex justify-between items-center " >

@@ -1,14 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Bar, Doughnut, Line, Pie, PolarArea } from 'react-chartjs-2';
-import { Chart as ChartJS } from 'chart.js/auto'
-import { Chart } from 'react-chartjs-2'
+import { Bar,
+  //  Doughnut, Line, Pie, PolarArea 
+  } from 'react-chartjs-2';
+// import { Chart as ChartJS } from 'chart.js/auto'
+// import { Chart } from 'react-chartjs-2'
 
 const DiabetesChart = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/')
+    axios.get('http://127.0.0.1:5000/')
       .then((res) => {
         // Ensure that 'res.data' is an array before setting the state
         if (Array.isArray(res.data)) {

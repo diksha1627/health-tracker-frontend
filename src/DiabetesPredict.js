@@ -15,9 +15,9 @@ const DiabetesPredict = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         try {
-            await axios.post('http://localhost:5000/predict', {
+            const response = await axios.post('http://localhost:5000/predict', {
                 pregnancies: pregnancies,
                 glucose: glucose,
                 bloodpressure: bloodpressure,
@@ -30,14 +30,22 @@ const DiabetesPredict = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            })
-            .then((res)=>console.log((res.data.data[0])))
-            .then((res)=>setData(res.data.data[0]))
-
+            });
+    
+            // Check if the response has a 'data' property
+            if (response.data && response.data.data && response.data.data.length > 0) {
+                const prediction = response.data.data[0];
+                console.log(prediction);
+                setData(prediction);
+            } else {
+                console.log('Invalid response format');
+            }
+    
         } catch (error) {
             console.log(error);
         }
     }
+    
 
 
     return (

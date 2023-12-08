@@ -1,13 +1,14 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react'
 import DiabetesChart from './DiabetesChart'
 
 const Dashboard = () => {
   return (
-    <div className='grid grid-cols-2 m-6 gap-8'>
-      <div className=" w-[130%] h-[20rem] z-10 flex justify-center items-center   border border-1 border-black">
+    <div className='grid grid-cols-2 m-2 gap-4 overflow-hidden scroll-none'>
+      <div className=" w-[130%] h-[20rem] z-10 flex justify-center items-center   ">
        <DiabetesChart/>
       </div>
-      <div className=" w-[70%] h-[20rem] ml-[12rem] flex justify-center items-center border border-1 border-black">
+      <div className=" w-[70%] h-[20rem] ml-[12rem] flex justify-center items-center ">
         
 
 <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -25,10 +26,10 @@ const Dashboard = () => {
                 <a href="/#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
             </li>
             <li>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export Data</a>
+                <a href="/#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export Data</a>
             </li>
             <li>
-                <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                <a href="/#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
             </li>
             </ul>
         </div>
@@ -38,14 +39,14 @@ const Dashboard = () => {
         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
         <span class="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
         <div class="flex mt-4 md:mt-6">
-            <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a>
-            <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700 ms-3">Message</a>
+            <a href="/#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a>
+            <a href="/#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700 ms-3">Message</a>
         </div>
     </div>
 </div>
 
       </div>
-      <div className=" w-[130%] h-[20rem] flex justify-center items-center   border border-1 border-black">
+      <div className=" w-[130%] h-[20rem] flex justify-center items-center   ">
       
 
 <div class="relative overflow-x-auto ">
@@ -103,7 +104,7 @@ const Dashboard = () => {
 </div>
 
       </div>
-       <div className=" w-[70%] h-[20rem] ml-[12rem] flex justify-center items-center border border-1 border-black">
+       <div className=" w-[70%] h-[20rem] ml-[12rem] flex justify-center items-center ">
          
 <ol class="space-y-4 w-72">
     <li>
