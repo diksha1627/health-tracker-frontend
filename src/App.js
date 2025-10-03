@@ -3,7 +3,7 @@ import Dashboard from "./Dashboard";
 import DiabetesPredict from "./DiabetesPredict";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import DiabetesTrack from "./DiabetesTrack";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/navBar";
 
 function App() {
   return (

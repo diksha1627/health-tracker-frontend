@@ -1,10 +1,18 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Bar,
-  //  Doughnut, Line, Pie, PolarArea 
-  } from 'react-chartjs-2';
-// import { Chart as ChartJS } from 'chart.js/auto'
-// import { Chart } from 'react-chartjs-2'
+import { Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+// ✅ Register necessary Chart.js components
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const DiabetesChart = () => {
   const [data, setData] = useState([]);
@@ -12,9 +20,7 @@ const DiabetesChart = () => {
   useEffect(() => {
     axios.get('http://127.0.0.1:5000/')
       .then((res) => {
-        // Ensure that 'res.data' is an array before setting the state
         if (Array.isArray(res.data)) {
-          console.log(res.data)
           setData(res.data);
         } else {
           console.error("Invalid data format received from the API");
@@ -26,11 +32,9 @@ const DiabetesChart = () => {
   }, []);
 
   const chartData = {
-    labels: data?.map((entry) => {
-      // Format date to a shorter and more readable format
-      const formattedDate = new Date(entry.date).toLocaleDateString();
-      return formattedDate;
-    }),
+    labels: data?.map((entry) =>
+      new Date(entry.date).toLocaleDateString()
+    ),
     datasets: [
       {
         label: 'Blood Sugar Level',
@@ -43,8 +47,8 @@ const DiabetesChart = () => {
   };
 
   return (
-    <div className='flex justify-center items-center flex-col w-[70%]'>
-    <Bar data={chartData}  />
+    <div className="flex justify-center items-center flex-col w-[70%]">
+      <Bar data={chartData} />
     </div>
   );
 };
