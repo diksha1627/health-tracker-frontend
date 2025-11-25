@@ -9,7 +9,7 @@ export const useAuth = () => {
       // Add a small delay to ensure session is set
       await new Promise(resolve => setTimeout(resolve, 100));
       
-      const response = await fetch('http://127.0.0.1:5000/api/user', {
+      const response = await fetch('https://heath-tracker-backend-hkiy.vercel.app/api/user', {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -51,12 +51,12 @@ export const useAuth = () => {
   }, []);
 
   const login = () => {
-    window.location.href = 'http://127.0.0.1:5000/login';
+    window.location.href = 'https://heath-tracker-backend-hkiy.vercel.app/login';
   };
 
   const logout = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/logout', {
+      const response = await fetch('https://heath-tracker-backend-hkiy.vercel.app/logout', {
         method: 'POST',
         credentials: 'include',
         headers: {

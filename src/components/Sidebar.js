@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 const Sidebar = ({ activeTab, setActiveTab, user, onLogout }) => {
     const [isOpen, setIsOpen] = useState(false);
   
@@ -36,27 +37,10 @@ const Sidebar = ({ activeTab, setActiveTab, user, onLogout }) => {
           }`}
         >
           {/* Header */}
-          <div className="p-6 border-b border-blue-500">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
-                <span className="text-2xl">🩺</span>
-              </div>
-              <div>
-                <h2 className="text-xl font-bold">Health Tracker</h2>
-                <p className="text-xs text-blue-200">Stay Healthy</p>
-              </div>
-            </div>
+          <div className="p-6 pt-10 border-b border-blue-500">
+           
             
-            {/* User Info */}
-            <div className="bg-blue-800 bg-opacity-50 rounded-xl p-3 flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full flex items-center justify-center">
-                <span className="text-lg">👤</span>
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold truncate">{user?.name || 'User'}</p>
-                <p className="text-xs text-blue-200 truncate">{user?.email || 'user@example.com'}</p>
-              </div>
-            </div>
+         
           </div>
   
           {/* Navigation */}
@@ -83,15 +67,15 @@ const Sidebar = ({ activeTab, setActiveTab, user, onLogout }) => {
           </nav>
   
           {/* Logout Button */}
-          <div className="p-4 border-t border-blue-500">
+          {/* <div className="p-4 border-t border-blue-500">
             <button
               onClick={onLogout}
               className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white transition-all shadow-lg hover:shadow-xl"
             >
-              <span className="text-xl">🚪</span>
+                <LogoutIcon className="w-5 h-5" />
               <span className="font-semibold">Logout</span>
             </button>
-          </div>
+          </div> */}
         </div>
       </>
     );

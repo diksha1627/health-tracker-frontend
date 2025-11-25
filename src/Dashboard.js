@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import DiabetesChart from "./DiabetesChart";
 import NavBar from "./components/navBar";
 import Sidebar from "./components/Sidebar";
+import ProfileModal from "./components/ProfileModal";
 const Dashboard = ({ user, onLogout }) => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [records, setRecords] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showPredictModal, setShowPredictModal] = useState(false);
+  const [showProfile, setShowProfile] = useState(false); // NEW
 
   const [formData, setFormData] = useState({
     bloodSugarLevel: "",
@@ -35,7 +37,7 @@ const Dashboard = ({ user, onLogout }) => {
  
 const fetchRecords = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:5000/diabetes", {
+    const response = await fetch("https://heath-tracker-backend-hkiy.vercel.app/diabetes", {
       method: "GET",
       credentials: 'include',
       headers: {
@@ -52,7 +54,7 @@ const fetchRecords = async () => {
 
 const handleAddRecord = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:5000/diabetes", {
+    const response = await fetch("https://heath-tracker-backend-hkiy.vercel.app/diabetes", {
       method: "POST",
       credentials: 'include',
       headers: { "Content-Type": "application/json" },
@@ -74,7 +76,7 @@ const handleAddRecord = async () => {
 
 const handlePredict = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:5000/predict", {
+    const response = await fetch("https://heath-tracker-backend-hkiy.vercel.app/predict", {
       method: "POST",
       credentials: 'include',
       headers: { "Content-Type": "application/json" },
@@ -112,7 +114,7 @@ const handlePredict = async () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Navbar */}
-        <NavBar user={user} onLogout={onLogout}/>
+        <NavBar user={user} onLogout={onLogout} onOpenProfile={() => setShowProfile(true)} />
 
         {/* Content Area */}
         <main className="flex-1 overflow-y-auto bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
@@ -504,6 +506,10 @@ const handlePredict = async () => {
           </div>
         </div>
       )}
+
+
+<ProfileModal open={showProfile} onClose={() => setShowProfile(false)} user={user} />
+
     </div>
   );
 };
