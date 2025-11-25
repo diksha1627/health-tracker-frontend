@@ -1,32 +1,38 @@
-import Sidebar from "./components/Sidebar";
 import Dashboard from "./Dashboard";
-import DiabetesPredict from "./DiabetesPredict";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import DiabetesTrack from "./DiabetesTrack";
-import NavBar from "./components/navBar";
+import { useAuth } from "./utils/useAuth";
+import LoginPage from "./components/LoginPage";
+import AuthSuccess from "./components/AuthSuccess";
 
-function App() {
+export default function App() {
+  const { user, loading, login, logout } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <BrowserRouter>
-       <NavBar/>
-    <div className="App w-full h-[100vh] flex flex-col lg:flex-row  ">
-    
-    <div className="lg:w-[17%] ">
-    <Sidebar/>
-    </div>
-   <div className="lg:w-[80%]">
-        <Routes>
-          <Route exact path="/" element={< Dashboard />} />
-          <Route exact path="/diabetes-track" element={< DiabetesTrack />} />
-          <Route exact path="/diabetes-predict" element={< DiabetesPredict />} />
-          <Route exact path="/diabetes-info" element={< Dashboard />} />
-
-        </Routes>
-      </div>
-    </div>
+      <Routes>
+        <Route path="/auth/success" element={<AuthSuccess />} />
+        <Route
+          path="/"
+          element={
+            user ? (
+              <Dashboard user={user} onLogout={logout} />
+            ) : (
+              <LoginPage onLogin={login} />
+            )
+          }
+        />
+      </Routes>
     </BrowserRouter>
-
   );
 }
-
-export default App;

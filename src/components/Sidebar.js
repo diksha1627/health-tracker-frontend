@@ -1,71 +1,102 @@
-/* eslint-disable no-empty-pattern */
-import React, { useState } from 'react';
-import { ListPlus  , SignOut , PuzzlePiece , BookOpen ,Gauge }  from "@phosphor-icons/react";
-import { useNavigate } from 'react-router-dom';
-
-
-const Sidebar = ({
-}) => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const navigate = useNavigate();
-
-   
-
-    const handleSignOut = async () => {
-      
-      };
-
-
+import { useState } from "react";
+const Sidebar = ({ activeTab, setActiveTab, user, onLogout }) => {
+    const [isOpen, setIsOpen] = useState(false);
+  
+    const menuItems = [
+      { id: 'dashboard', label: 'Dashboard', icon: '📊' },
+      { id: 'tracker', label: 'Diabetes Track', icon: '📝' },
+      { id: 'predict', label: 'Diabetes Predict', icon: '🔮' },
+      { id: 'info', label: 'Diabetes Info', icon: '📖' },
+    ];
+  
     return (
-        <div className="bg-gradient-to-r from-blue-700 to-blue-300  ">
-            <div className={`container mx-auto flex  ${isMenuOpen ? 'flex-col' : 'flex-col'} items-center justify-between`}>
-                {/* Display user name */}
-                <div className="text-white text-[20px] font-600 mt-5 w-[10rem]">Hi, </div>
-
-                {/* Burger Menu Icon (mobile view) */}
-                <div
-                    className="text-white text-[20px] cursor-pointer md:hidden  lg:hidden"
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                >
-                    ☰
-                </div>
-
-                <div className=" flex-col lg:h-[87vh] overflow-hidden ">
-                    {/* buttons (desktop view) */}
-                    <div className="hidden md:flex gap-3 flex-col items-between justify-between ">
-                    <button onClick={()=>{navigate('/');}} className="bg-[#F5F5F5] rounded-xl pl-2 pr-2 hover:bg-[#333333] border hover:text-white text-black w-[10.5rem] mt-10 flex justify-between items-center " >
-                        <Gauge size={32} /> Dashboard</button>
-                        <button onClick={()=>{navigate('/diabetes-track');}} className="bg-[#F5F5F5] rounded-xl pl-2 pr-2 hover:bg-[#333333] border hover:text-white text-black w-[10.5rem] flex justify-between items-center ">
-                        <ListPlus size={32} /> Diabetes Track</button>
-                        <button onClick={()=>{navigate('/diabetes-predict');}} className="bg-[#F5F5F5] rounded-xl pl-2 pr-2 hover:bg-[#333333] border hover:text-white text-black w-[10.5rem] flex justify-between items-center ">
-                        <PuzzlePiece size={32} /> Diabetes Predict</button>
-                        <button onClick={()=>{navigate('/diabetes-info');}} className="bg-[#F5F5F5] rounded-xl pl-2 pr-2 hover:bg-[#333333] border hover:text-white text-black w-[10.5rem] flex justify-between items-center ">
-                        <BookOpen size={32} /> Diabetes Info</button>
-                        <button onClick={handleSignOut} className="bg-[#F5F5F5] rounded-xl pl-2 pr-2  hover:bg-[#333333] border hover:text-white text-black w-[10.5rem] flex justify-between items-center ">
-                        <SignOut size={32} /> Log-Out</button>
-                    </div>
-
-                    {/* Responsive Menu (shown in mobile view) */}
-                    {isMenuOpen && (
-                        <div className="md:hidden ">
-                            <button className=" mb-3 bg-[#F5F5F5] hover:bg-[#333333] border hover:text-white text-black w-[10.5rem] mt-10 flex justify-between items-center " >
-                        <Gauge size={32} /> Dashboard</button>
-                       <button className="mb-3 bg-[#F5F5F5] hover:bg-[#333333] border hover:text-white text-black w-[10.5rem] flex justify-between items-center ">
-                        <ListPlus size={32} /> Generate new</button>
-                        <button className="mb-3 bg-[#F5F5F5] hover:bg-[#333333] border hover:text-white text-black w-[10.5rem] flex justify-between items-center ">
-                        <PuzzlePiece size={32} /> Get Credits</button>
-                        <button className="mb-3 bg-[#F5F5F5] hover:bg-[#333333] border hover:text-white text-black w-[10.5rem] flex justify-between items-center ">
-                        <BookOpen size={32} /> Hirebot Guide</button>
-                        <button onClick={handleSignOut} className="mb-3 bg-[#F5F5F5] hover:bg-[#333333] border hover:text-white text-black w-[10.5rem] flex justify-between items-center ">
-                        <SignOut size={32} /> Log-Out</button>
-                        </div>
-                    )}
-                </div>
+      <>
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg shadow-lg"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+  
+        {/* Overlay for mobile */}
+        {isOpen && (
+          <div
+            className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+  
+        {/* Sidebar */}
+        <div
+          className={`fixed lg:sticky top-0 left-0 h-screen bg-gradient-to-b from-blue-700 via-blue-600 to-blue-500 text-white w-64 flex flex-col shadow-2xl z-40 transition-transform duration-300 ${
+            isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+          }`}
+        >
+          {/* Header */}
+          <div className="p-6 border-b border-blue-500">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
+                <span className="text-2xl">🩺</span>
+              </div>
+              <div>
+                <h2 className="text-xl font-bold">Health Tracker</h2>
+                <p className="text-xs text-blue-200">Stay Healthy</p>
+              </div>
             </div>
-
-         
+            
+            {/* User Info */}
+            <div className="bg-blue-800 bg-opacity-50 rounded-xl p-3 flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full flex items-center justify-center">
+                <span className="text-lg">👤</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold truncate">{user?.name || 'User'}</p>
+                <p className="text-xs text-blue-200 truncate">{user?.email || 'user@example.com'}</p>
+              </div>
+            </div>
+          </div>
+  
+          {/* Navigation */}
+          <nav className="flex-1 p-4 overflow-y-auto">
+            <div className="space-y-2">
+              {menuItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    setActiveTab(item.id);
+                    setIsOpen(false);
+                  }}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                    activeTab === item.id
+                      ? 'bg-white text-blue-700 shadow-lg font-semibold'
+                      : 'text-white hover:bg-blue-600 hover:shadow-md'
+                  }`}
+                >
+                  <span className="text-2xl">{item.icon}</span>
+                  <span className="font-medium">{item.label}</span>
+                </button>
+              ))}
+            </div>
+          </nav>
+  
+          {/* Logout Button */}
+          <div className="p-4 border-t border-blue-500">
+            <button
+              onClick={onLogout}
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white transition-all shadow-lg hover:shadow-xl"
+            >
+              <span className="text-xl">🚪</span>
+              <span className="font-semibold">Logout</span>
+            </button>
+          </div>
         </div>
+      </>
     );
-};
+  };
 
-export default Sidebar;
+
+  export default Sidebar;
+  
